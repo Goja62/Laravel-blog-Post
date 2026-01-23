@@ -1,11 +1,8 @@
 <?php
 
+use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ExampleController::class, 'homepage']);
 
-Route::get('/about', function () {
-    return '<h1>About us</h1>';
-});
+Route::get('/about', [ExampleController::class, 'about']);
