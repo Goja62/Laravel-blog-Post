@@ -9,7 +9,9 @@ class ExampleController extends Controller
 {
     public function homepage()
     {
-        return '<h1>Home</h1><a href="/about">About</a>';
+        $ourName = 'Goja';
+        $sports = ['Odbojka', 'Fudbal', 'Rukomet'];
+        return view('homepage', ['name' => $ourName, 'sportovi' => $sports]);
     }
 
     public function about()
