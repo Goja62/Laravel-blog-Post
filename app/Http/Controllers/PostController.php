@@ -25,8 +25,13 @@ class PostController extends Controller
         $incomingFileds['body'] = strip_tags($incomingFileds['body']);
         $incomingFileds['user_id'] = Auth::id();
 
-        Post::create($incomingFileds);
+        $newPost =  Post::create($incomingFileds);
 
-        return "Saved";
+        return redirect("/post/{$newPost->id}")->with('success', 'New post successfuly created');
+    }
+
+    public function viewSinglePost(Post $post)
+    {
+        return view('single-post', ['post' => $post]);
     }
 }
