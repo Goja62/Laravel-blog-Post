@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -32,6 +33,8 @@ class PostController extends Controller
 
     public function viewSinglePost(Post $post)
     {
+        $ourHTML = strip_tags(Str::markdown($post->body), '<p><ul><ol><strong><em>');
+        $post['body'] = $ourHTML;
         return view('single-post', ['post' => $post]);
     }
 }
