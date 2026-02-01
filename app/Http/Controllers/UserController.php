@@ -52,4 +52,9 @@ class UserController extends Controller
         Auth::login($user);
         return redirect('/')->with('success', 'Thank you for creating account');
     }
+
+    public function profile(User $user)
+    {
+        return view('profile-posts', ['username' => $user->username, 'posts' => $user->posts()->latest()->get(), 'postCount' => $user->posts()->count()]);
+    }
 }
