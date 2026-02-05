@@ -6,7 +6,7 @@
             <div class="mb-3">
                 <input type="file" name="avatar" id="" required>
                 @error('avatar')
-                    <p class="alert small alaret-danger shadow-sm">{{ $message }}</p>
+                    <p class="alert small alert-danger shadow-sm">{{ $message }}</p>
                 @enderror
             </div>
             <button class="btn btn-primary">Save</button>
