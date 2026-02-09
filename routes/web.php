@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Gate as FacadesGate;
@@ -26,6 +27,9 @@ Route::put('/post/{post}', [PostController::class, 'actuallyUpdate'])->middlewar
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
 
 
+// Follow related routes
+Route::post('/create-follow/{user:username}', [FollowController::class, 'createFollow'])->middleware('mustBeLoggedIn');
+Route::post('/remove-follow/{user:username}', [FollowController::class, 'removeFollow'])->middleware('mustBeLoggedIn');
 
 Route::get('/admin-only', function () {
     // if (FacadesGate::allows('visitAdminPages')) {
@@ -33,6 +37,8 @@ Route::get('/admin-only', function () {
     // }
 
     // return 'You cannot view this page';
+
+
 
     return 'Only admin can see this page';
 })->middleware('can:visitAdminPages');
